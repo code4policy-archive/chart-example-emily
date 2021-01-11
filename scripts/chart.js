@@ -1,3 +1,4 @@
+function drawLineChart(cssSelector, chart_name){
 
 var margin = {top: 20, right: 50, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
@@ -30,7 +31,7 @@ var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .attr("class", "chart")
-    .attr("id", "apple-stock-chart")
+    .attr("id", chart_name)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -97,5 +98,8 @@ d3.tsv("data.tsv", function(error, data) {
     focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
     focus.select("text").text(formatCurrency(d.close));
   }
-});
+})
+};
 
+drawLineChart('#apple-stock-chart', "apple-stock-chart");
+drawLineChart('#apple-stock-chart-2', "apple-stock-chart-2");
